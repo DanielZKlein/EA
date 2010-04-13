@@ -1,0 +1,14 @@
+{% extends "templates/generic_frame.html" %}
+
+{% block maincontent %}
+{% if info %}
+{{ info }}
+{% endif %}
+<ul>
+<li><a href="{% url EA.core.views.private %}">Private page</a></li>
+<li><a href="{% url EA.core.views.public %}">Public page</a></li>
+<li><a href="{% url EA.core.views.publicsecret %}">Public page (with maybe a secret)</a></li>
+</ul>
+
+
+{% endblock %}

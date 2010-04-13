@@ -1,0 +1,19 @@
+#header {
+height: 6%;
+border-bottom: 1px solid black;
+}
+
+#footer {
+border-top: 1px solid black;
+padding-top: 15px;
+height: 4%
+}
+
+#maincontent {
+height: 88%;
+overflow: auto;
+}
+
+body {
+overflow: hidden;
+}

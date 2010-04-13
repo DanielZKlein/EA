@@ -1,0 +1,12 @@
+<h1>Login page</h1>
+<hr>
+{% if error %}
+<span style="font-weight: bold; color: red;">ERROR: {{ error }}</span><hr>
+{% endif %}
+<form action="{% url EA.core.views.dologin %}" method=POST>
+<label for="username">Username</label>
+<input type=text name="username" id="username" /><br />
+<label for="password">Password</label>
+<input type=password name="password" id="password" /><br />
+<input type=submit value="Login" />
+</form>

@@ -1,0 +1,42 @@
+<html>
+<head>
+<link rel="stylesheet" href="/stuff/style.css">
+<title>{% block title %}User test{% endblock %}</title>
+</head>
+
+<!-- requires: username, loggedin -->
+
+<body>
+
+<div id="header">
+	<div id="loggedinstatus">
+		{% if loggedin %}
+		Hello {{ username }}!
+		{% else %}
+		You are not logged in.
+		{% endif %}
+	</div>
+
+	<div id="loginout">
+		{% if loggedin %}
+		<a href="{% url EA.core.views.dologout %}">Log out</a>
+		{% else %}
+		<a href="{% url EA.core.views.loginpage %}">Log in!</a>
+		{% endif %}
+	</div>
+</div>
+
+<div id="maincontent">
+{% block maincontent %}
+{% endblock %}
+</div>
+
+
+<div id="footer">
+{% block footer %}
+This is the footer. It is inserted into the arser. <a href="{% url EA.core.views.rootview %}">Return to root view</a>
+{% endblock %}
+</div>
+
+</body>
+</html>
