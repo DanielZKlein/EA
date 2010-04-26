@@ -1,12 +1,26 @@
 from django.shortcuts import render_to_response, get_object_or_404, redirect
 from django.contrib.auth import authenticate, login, logout
+from EA.game.models import Game
 
 def get_standard_dict(request):
 	standard_dict = {'loggedin' : request.user.is_authenticated(), 'username' : request.user.username}
 	return standard_dict
 
 def rootview(request, message=None):
-	return render_to_response('templates/rootview.html', {'loggedin' : request.user.is_authenticated(), 'username': request.user.username})
+	games_to_show = Game.objects.filter(status__in=["Lobby", "Running"])
+	for tempgame in games_to_show:
+		if tempgame.user_inside(request.user):
+			tempgame.currentlyin = True			
+		else:
+			tempgame.currentlyin = False
+			if tempgame.players.count() < tempgame.max_players:
+				tempgame.canbejoined = True
+			else:
+				tempgame.canbejoined = False
+		
+	sd = get_standard_dict(request)
+	sd['games'] = games_to_show
+	return render_to_response('templates/rootview.html', sd)
 
 def private(request):
 	if not request.user.is_authenticated():

@@ -1,4 +1,5 @@
 from django.conf.urls.defaults import *
+from EA.game.views import game
 
 # Uncomment the next two lines to enable the admin:
 from django.contrib import admin
@@ -14,6 +15,11 @@ urlpatterns = patterns('EA.core',
 	(r'^login/$',  'views.loginpage'),
 	(r'^dologin/$', 'views.dologin'),
 	(r'^dologout/$', 'views.dologout'),
+)
+
+urlpatterns = urlpatterns + patterns('EA.game',
+	(r'^prelobby/$', 'views.prelobby'),
+	url(r'^game/(\d+)/$', 'views.game', name='gameview'),
 )
 
 urlpatterns = urlpatterns + patterns('',

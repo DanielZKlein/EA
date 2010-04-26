@@ -17,3 +17,10 @@ overflow: auto;
 body {
 overflow: hidden;
 }
+
+#gameoverview td {
+padding-right: 30px;
+}
+#gameoverview tr:first-child {
+font-weight: bold;
+}

@@ -4,11 +4,25 @@
 {% if info %}
 {{ info }}
 {% endif %}
-<ul>
-<li><a href="{% url EA.core.views.private %}">Private page</a></li>
-<li><a href="{% url EA.core.views.public %}">Public page</a></li>
-<li><a href="{% url EA.core.views.publicsecret %}">Public page (with maybe a secret)</a></li>
-</ul>
-
+The following games are currently setting up:<br><br>
+<table id="gameoverview">
+	<tr><td>Name</td><td>Id</td><td>Players</td><td></td></tr>
+{% for game in games %}
+	<tr> <td>{{ game.name }}</td><td>{{game.id}}</td><td>{{game.players.count}} / {{game.max_players}}</td><td> 
+	{% if game.currentlyin %} 
+		<a href="/game/{{game.id}}">Open game</a> 
+	{% else %}
+		{% if game.canbejoined %}
+			<a href="/game/{{game.id}}">Join game</a>
+		{% else %}
+			Game is full!
+		{% endif %}
+	{% endif %}
+	</td></tr>
+{% endfor %}
+</table>
+<form action="/prelobby/" method="POST">
+<input type=submit value="Create new game lobby!"></input>
+</form>
 
 {% endblock %}
