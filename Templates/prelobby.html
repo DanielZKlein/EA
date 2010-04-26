@@ -1,0 +1,15 @@
+{% extends "templates/generic_frame.html" %}
+
+{% block maincontent %}
+<h2>Creating a new game</h2>
+<br>
+You are creating a new game. For now the only thing you need to tell us is what that game is going to be called. Eventually you'll decide things such as what map it will be played on, what ruleset it will use, how many players it will support, and so on. So this is a placeholder page! Yay placeholders!
+<br><br>
+<form action="/prelobby/" method="post">
+<table>
+{{ form.as_table }}
+</table>
+<br><br>
+<input type=submit value="Create game">
+</form>
+{% endblock %}
