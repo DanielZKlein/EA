@@ -1,5 +1,8 @@
 {% extends "templates/generic_frame.html" %}
 
 {% block maincontent %}
+{% if message %}
+<span style="color: blue;">{{ message }}</span><br><br>
+{% endif %}
 This is game {{ game.id }}. Its name is {{ game.name }}
 {% endblock %}

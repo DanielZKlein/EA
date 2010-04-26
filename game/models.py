@@ -17,11 +17,44 @@ class Game(models.Model):
 	
 	def user_inside(self, user):
 		return user in self.players.all()
+		
+	def join(self, user):
+		if user in self.players.all() or self.players.count() >= self.max_players:
+			return False
+		else:
+			self.players.add(user)
+			self.chat.all()[0].join(user)
+			return True
+			
+	def leave(self, user):
+		if not user in self.players.all():
+			return False
+		self.players.remove(user)
+		self.chat.all()[0].leave(user)
+		for myteam in self.team_set.all():
+			myteam.leave(user)
+		return True
 
 class Team(models.Model):
 	name = models.CharField(max_length=30)
 	game = models.ForeignKey(Game)
 	players = models.ManyToManyField(User, blank=True)
+	chat = generic.GenericRelation(Chat)
 
 	def __unicode__(self):
-		return self.name	
+		return self.name
+
+	def join(self, user):
+		if user in self.players.all():
+			return False
+		self.players.add(user)
+		self.chat.all()[0].join(user)
+		return True
+		
+	def leave(self, user):
+		if not user in self.players.all():
+			return False
+		self.players.remove(user)
+		self.chat.all()[0].leave(user)
+		return True
+		

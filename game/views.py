@@ -14,8 +14,12 @@ def game(request, id=-1):
 		sd['errormessage'] = "Must log in to see game."
 		return render_to_response('templates/error.html', sd)
 	if not request.user in mygame.players.all():
-		sd['errormessage'] = "You cannot see this game because you are not in it."
-		return render_to_response('templates/error.html', sd)
+		if mygame.players.count() < mygame.max_players:
+			mygame.join(request.user)
+			sd['message'] = "Joined game " + str(mygame.name)
+		else:
+			sd['errormessage'] = "You cannot see this game because you are not in it. You cannot join this game because it is full. It seems you are shit out of luck."
+			return render_to_response('templates/error.html', sd)
 	sd['game'] = mygame
 	return render_to_response('templates/game.html', sd)
 	
@@ -31,6 +35,8 @@ def prelobby(request):
 			newgame.players.add(request.user)
 			newgame.save()
 			gamechat = Chat(name="Chat for game " + form.cleaned_data['name'], content_object = newgame)
+			gamechat.save() 
+			gamechat.join(request.user)
 			t1chat = Chat(name="Team 1 Chat", content_object = team1)
 			t2chat = Chat(name="Team 2 Chat", content_object = team2)
 			gamechat.save()
