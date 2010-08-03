@@ -1,26 +1,98 @@
+@font-face { font-family: 'Kaffee';
+	src: url('/stuff/Quicksand_Book.otf');}
+@font-face { font-family: 'Brush';
+	src: url('/stuff/Artbrush.ttf'); }
+@font-face { font-family: 'boldstuff'; 	
+	src: url('/stuff/Forque.ttf'); }
+@font-face { font-family: "Hattori";
+	src: url('/stuff/Hattori_Hanzo.otf'); }
+@font-face { font-family: "luxi";
+	src: url('/stuff/luximr.ttf'); }
+@font-face { font-family: "communistbold";
+	src: url('/stuff/communist_bold.ttf'); }
+@font-face { font-family: "oldfashion";
+	src: url('/stuff/JustOldFashion.ttf'); }
+	
+body { margin: 0px; font-family: luxi;}
+#debugbutton { z-index: 100; position: absolute; top: 0px; left: 200px; }
+#gameoverviewheader td {border-bottom: 1px solid black;}
+#loginout a { font-weight: bold;
+	border-radius: 5px;
+	text-decoration: none;
+	color: brown;
+	border: 2px outset #677a04;
+	padding: 3px; }
+#loginout a:hover { font-weight: bold;
+	text-decoration: none;
+	color: brown;
+	border: 2px outset #dbb40c;
+	padding: 3px; }
+#loginout a:active { border: 2px inset #dbb40c;}
+#footerreturn a { padding: 4px;
+	font-weight: bold;
+	text-decoration: none;
+	color: brown;
+	border: 1px solid #87ae73;}
+#gameoverview td { padding-right: 30px; }
+#gameoverview tr:first-child { font-weight: bold; }
+.teamheader {text-align: center; vertical-align: middle; font-family: oldfashion; font-size: 18px; padding: 0px; }
+
+
+// LAYOUT
+input[type="button"] {
+border: 2px outset grey;
+margin: 0px;
+padding: 2px 10px;
+background-color: #e7d7b1;
+}
+
+#header table, #footer table { width: 100%; }
+#header, #footer { background-color: #d1b26f; }
 #header {
-height: 6%;
-border-bottom: 1px solid black;
-}
-
+position: absolute;
+top: 0px;
+width: 100%;
+height: 40px; }
 #footer {
-border-top: 1px solid black;
-padding-top: 15px;
-height: 4%
+position: absolute;
+width: 100%;
+height: 40px;
+bottom: 0px; }
+#headerleft, #footerleft {padding-left: 10px;}
+#headermiddle, #footermiddle { text-align: center; }
+#headermiddle { font-family: Brush; font-size: 26px; }
+#headerright, #footerright { text-align: right; padding-right: 10px;}
+#header td, #footer td { vertical-align: middle;}
+#header table, #footer table { height: 100%; }
+#content {
+position: absolute;
+top: 0px;
+bottom: 0px;
+left: 0px;
+right: 0px;
+margin: 50px 10px;
+height: auto;
 }
+#cleft { float: left; width: 20%; }
+#cmid { width: 60%; float: left; z-index: 1;}
+#cright {float: right; width: 20%; }
+#cleft, #cmid, #cright { height: 50%; position: relative;}
+#clmid {background-color: #fbc2c2; height: 100%; }
+#clhead, #cmhteam1 {background-color: #ff5959; }
+#crhead, #cmhteam2 {background-color: #1063e0; }
+#crmid {background-color: #9fc2ff; height: 100%;}
+#content {
+font-size: 20px;
+}
+#clhead, #crhead, #cmhneut, #cmhteam1, #cmhteam2 { }
+#clhead, #cmhead, #crhead { height: 40px;}
+#cmhead table {border-spacing: 0px; }
+#cmhneut, #cmhteam1, #cmhteam2 {width: 100%; height: 100%; vertical-align: middle;}
+#cmhneut {background-color: #c5c9c7;}
 
-#maincontent {
-height: 88%;
-overflow: auto;
-}
+#cmhneut {display: block; text-align: center;}
+#cmhteam1 {display: none; text-align: left;}
+#cmhteam2 {display: none; text-align: right;}
 
-body {
-overflow: hidden;
-}
+// END LAYOUT
 
-#gameoverview td {
-padding-right: 30px;
-}
-#gameoverview tr:first-child {
-font-weight: bold;
-}

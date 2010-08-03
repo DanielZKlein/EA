@@ -1,11 +1,47 @@
 from django.shortcuts import render_to_response, get_object_or_404, redirect
 from django.contrib.auth import authenticate, login, logout
 from EA.game.models import Game
+from EA.chat.models import Chat
+from django.http import HttpResponse
+import json, re
+from EA.tools import dbug
 
 def get_standard_dict(request):
 	standard_dict = {'loggedin' : request.user.is_authenticated(), 'username' : request.user.username}
 	return standard_dict
 
+def ajax(request):
+	if not request.is_ajax():
+		return False
+	chatrefreshpattern = re.compile(r'^chat(\d+)refresh$')
+	returnObject = { "chatqueues" : {}}
+	for key in request.GET:
+		m = chatrefreshpattern.search(key)
+		if m:
+			chatid = m.group(1)
+			lastrefresh = request.GET[key]
+			mychat = Chat.objects.get(pk=chatid)
+			lines = mychat.listen(request.user, lastrefresh)
+			newlast = 0
+			saytext = ""
+			returnObject["chatqueues"][chatid] = []
+			hadLines = False
+			for line in lines:
+				hadLines = True
+				formatted_line = line.format_for_output()
+				newlast = line.id
+				for fline in formatted_line:
+					#may be more than one line per return
+					returnObject["chatqueues"][chatid].append(fline)
+			if hadLines: 
+				returnObject["chatqueues"][chatid].append(["newlastid", newlast])
+	chatjson = json.dumps(returnObject)
+	dbug("about to return")
+	dbug(chatjson)
+	return HttpResponse(chatjson)
+				
+		
+	
 def rootview(request, message=None):
 	games_to_show = Game.objects.filter(status__in=["Lobby", "Running"])
 	for tempgame in games_to_show:

@@ -1,41 +1,52 @@
 <html>
 <head>
 <link rel="stylesheet" href="/stuff/style.css">
+<script src="/stuff/jquery-1.4.2.min.js"></script>
+{% block stylesheets %}
+{% endblock %}
 <title>{% block title %}User test{% endblock %}</title>
 </head>
 
 <!-- requires: username, loggedin -->
 
 <body>
+<div id="debugbutton"><input type=button onclick="ajaxStopRefresh = true;" value="Make it stop"></div>
 
 <div id="header">
-	<div id="loggedinstatus">
+<table id="headertable">
+<tr><td id="headerleft">	
+	<span id="loggedinstatus">
 		{% if loggedin %}
 		Hello {{ username }}!
 		{% else %}
 		You are not logged in.
 		{% endif %}
-	</div>
-
-	<div id="loginout">
+	</span>
+</td>
+<td id="headermiddle">{% block heading %} {% endblock %}</td>
+<td id="headerright">	
+	<span id="loginout">
 		{% if loggedin %}
-		<a href="{% url EA.core.views.dologout %}">Log out</a>
+			<a href="{% url EA.core.views.dologout %}">Logout</a>
 		{% else %}
-		<a href="{% url EA.core.views.loginpage %}">Log in!</a>
+			<a href="{% url EA.core.views.loginpage %}">Login</a>
 		{% endif %}
-	</div>
+	</span></td>
+</tr></table>
 </div>
 
-<div id="maincontent">
+
 {% block maincontent %}
 {% endblock %}
-</div>
+
 
 
 <div id="footer">
-{% block footer %}
-This is the footer. It is inserted into the arser. <a href="{% url EA.core.views.rootview %}">Return to root view</a>
-{% endblock %}
+<table id="footertable">
+<tr><td id="footerleft"><span id="ajaxstatus"></span></td>
+<td id="footermiddle"><span id="footerstatus">{% block footermessage %} {% endblock %}</span></td>
+<td id="footerright"><span id="footerreturn"><a href="{% url EA.core.views.rootview %}">Return to root view</a></span></td>
+</tr></table>
 </div>
 
 </body>

@@ -36,7 +36,7 @@ class Game(models.Model):
 		return True
 
 class Team(models.Model):
-	name = models.CharField(max_length=30)
+	name = models.CharField(max_length=300)
 	game = models.ForeignKey(Game)
 	players = models.ManyToManyField(User, blank=True)
 	chat = generic.GenericRelation(Chat)

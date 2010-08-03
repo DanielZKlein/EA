@@ -6,7 +6,7 @@
 {% endif %}
 The following games are currently setting up:<br><br>
 <table id="gameoverview">
-	<tr><td>Name</td><td>Id</td><td>Players</td><td></td></tr>
+	<tr id="gameoverviewheader"><td>Name</td><td>Id</td><td>Players</td><td></td></tr>
 {% for game in games %}
 	<tr> <td>{{ game.name }}</td><td>{{game.id}}</td><td>{{game.players.count}} / {{game.max_players}}</td><td> 
 	{% if game.currentlyin %} 

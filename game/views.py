@@ -21,6 +21,7 @@ def game(request, id=-1):
 			sd['errormessage'] = "You cannot see this game because you are not in it. You cannot join this game because it is full. It seems you are shit out of luck."
 			return render_to_response('templates/error.html', sd)
 	sd['game'] = mygame
+	sd['gamechat'] = mygame.chat.all()[0]
 	return render_to_response('templates/game.html', sd)
 	
 def prelobby(request):
@@ -28,11 +29,13 @@ def prelobby(request):
 		form = GameForm(request.POST)
 		if form.is_valid():
 			newgame = Game(name=form.cleaned_data['name'])
-			team1 = newgame.team_set.create(name="Team 1")
-			team2 = newgame.team_set.create(name="Team 2")
+			newgame.save()
+			team1 = newgame.team_set.create(name="Team 1 in game "+form.cleaned_data['name'])
+			team2 = newgame.team_set.create(name="Team 2 in game "+form.cleaned_data['name'])
 			newgame.status = "Lobby"
 			newgame.save()
 			newgame.players.add(request.user)
+			team1.players.add(request.user) # Automatically put host into team1; clutch for now, think of better way for later
 			newgame.save()
 			gamechat = Chat(name="Chat for game " + form.cleaned_data['name'], content_object = newgame)
 			gamechat.save() 
