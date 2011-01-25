@@ -1,0 +1,32 @@
+>>> from django.contrib.auth.models import User
+>>> from chat.models import Chat
+>>> from game.models import Game, Team
+>>> newgame = Game(name="testgame1")
+>>> newgame
+<Game: testgame1>
+>>> newgame.team1
+>>> newgame.team1 = Team(name="tg1 team 1")
+>>> newgame.team2 = Team(name="tg1 team 2")
+>>> newgame.team1
+<Team: tg1 team 1>
+>>> newgame.team1.game
+Traceback (most recent call last):
+  File "<console>", line 1, in <module>
+AttributeError: 'Team' object has no attribute 'game'
+>>> newgame.team1
+<Team: tg1 team 1>
+>>> t1 = newgame.team1
+>>> newgame.save()
+>>> t1
+<Team: tg1 team 1>
+>>> t1.name
+'tg1 team 1'
+>>> t1.team1
+<Game: testgame1>
+>>> t1.team1 or t1.team2
+<Game: testgame1>
+>>> t2 = newgame.team2
+>>> t2
+<Team: tg1 team 2>
+>>> t2.team1 or t2.team2
+<Game: testgame1>
