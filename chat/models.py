@@ -10,12 +10,8 @@ class UserActivity(models.Model):
 	ping = models.DateTimeField(auto_now=True)
 
 class Chat(models.Model):
-	name = models.CharField(max_length=30, null=True)
 	users = models.ManyToManyField(User)
 	created = models.DateTimeField(auto_now_add = True)
-	content_type = models.ForeignKey(ContentType, null=True)
-	object_id = models.PositiveIntegerField(null=True)
-	content_object = generic.GenericForeignKey()
 	
 	def join(self, joiner):
 		if joiner in self.users.all():
@@ -32,9 +28,6 @@ class Chat(models.Model):
 		self.action(leaver, "leave")
 		self.users.remove(leaver)
 		return True
-	
-	def __unicode__(self):
-		return self.name
 	
 	def action(self, actor, action, more_info={}):
 		dbug("received action! Actor is " + actor.username + " and action is " + action)

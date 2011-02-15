@@ -1,0 +1,36 @@
+@font-face {
+	font-family: 'AdlerRegular';
+	src: url('/stuff/kingthings.ttf');
+}
+
+.chatwrapper {
+height: 100%;
+position: relative;
+background-color: #F9F9E9;
+}
+
+.chatbox {
+font-family: AdlerRegular;
+font-size: 14px;
+width: 80%;
+float: left;
+height: 100%;
+overflow: auto;
+
+}
+
+.userlist {
+font-family: AdlerRegular;
+font-size: 14px;
+width: 19%;
+border-left: 1px solid black;
+padding-left: 10px;
+float: right;
+height: 100%;
+}
+
+.chatinput {
+font-family: AdlerRegular;
+font-size: 14px;
+width: 100%;
+}

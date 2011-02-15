@@ -1,0 +1,22 @@
+<script src="/stuff/chat_init.js"></script>
+<script>
+chats[{{chatid}}] = new Object();
+chats[{{chatid}}]['users'] = new Array();
+chats[{{chatid}}]['id'] = {{chatid}};
+chats[{{chatid}}]['chatboxid'] = "chat{{chatid}}box";
+chats[{{chatid}}]['userlistid'] = "chat{{chatid}}userlist";
+chats[{{chatid}}]['lastid'] = 0;
+chats[{{chatid}}]['formid'] = "chat{{chatid}}form";
+chats[{{chatid}}]['inputid'] = "chat{{chatid}}input";
+</script>
+
+<div class=chatwrapper id=chat{{chatid}}wrapper>
+<div class=chatbox id=chat{{chatid}}box>
+</div>
+<div class=userlist id=chat{{chatid}}userlist>
+</div>
+<form id=chat{{chatid}}form>
+<input type=text class=chatinput id=chat{{chatid}}input>
+<input type=submit value="nothing" style="display: none;">
+</form>
+</div> <!-- chatwrapper -->

@@ -30,17 +30,19 @@ Game {{game.id}}
 <div id="content">
 	<div id="cleft">
 		<div id="clhead">
-		<!-- dear interested user looking at my source code, please accept my profuse apologies for what follows. The moment CSS stops sucking, I will stop writing atrocious code. -->
+		<!-- dear interested user looking at my source code, please accept my profuse apologies for the following line. The moment CSS stops sucking, I will stop writing atrocious code. -->
 		<table height=100% width=100%><tr><td class="teamheader">Team Red</td></tr></table>
 		</div>
 		<div id="clmid" class="teamlist">
-		<div>Hans</div><div>Peter</div>
+		{% for player in t1users %}
+		<div>{{ player.username }}</div>
+		{% endfor %}
 		</div>
 
 	</div>
 	<div id="cmid">
 		<div id="cmhead"><table width=100% height=100%><tr><td class="teamheader">
-		<div id="cmhneut">VS</div>
+		<div id="cmhneut" style="padding-top: 8px;">VS</div>
 		<div id="cmhteam1">&larr; your team</div>
 		<div id="cmhteam2">your team &rarr;</div>
 		</td></tr></table>
@@ -54,6 +56,10 @@ Game {{game.id}}
 		<table height=100% width=100%><tr><td class="teamheader">Team Blue</td></tr></table>
 		</div>
 		<div id="crmid" class="teamlist">
+		{% for player in t2users %}
+		<div>{{ player.username }}</div>
+		{% endfor %}
+		
 		</div>
 	</div>
 </div>
