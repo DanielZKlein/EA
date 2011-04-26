@@ -13,7 +13,7 @@
 @font-face { font-family: "oldfashion";
 	src: url('/stuff/JustOldFashion.ttf'); }
 	
-body { margin: 0px; font-family: luxi;}
+body { margin: 0px; font-family: arial;}
 #debugbutton { z-index: 100; position: absolute; top: 0px; left: 200px; }
 #gameoverviewheader td {border-bottom: 1px solid black;}
 #loginout a { font-weight: bold;
@@ -35,7 +35,7 @@ body { margin: 0px; font-family: luxi;}
 	border: 1px solid #87ae73;}
 #gameoverview td { padding-right: 30px; }
 #gameoverview tr:first-child { font-weight: bold; }
-.teamheader {text-align: center; vertical-align: middle; font-family: oldfashion; font-size: 18px; padding: 0px; }
+.teamheader {text-align: center; vertical-align: middle; font-family: arial; font-size: 18px; padding: 0px; }
 
 
 // LAYOUT
@@ -60,7 +60,7 @@ height: 40px;
 bottom: 0px; }
 #headerleft, #footerleft {padding-left: 10px;}
 #headermiddle, #footermiddle { text-align: center; }
-#headermiddle { font-family: Brush; font-size: 26px; }
+#headermiddle { font-family: arial; font-size: 26px; }
 #headerright, #footerright { text-align: right; padding-right: 10px;}
 #header td, #footer td { vertical-align: middle;}
 #header table, #footer table { height: 100%; }

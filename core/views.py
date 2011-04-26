@@ -13,8 +13,11 @@ def get_standard_dict(request):
 def ajax(request):
 	if not request.is_ajax():
 		return False
+	# dbug("handling ajax request")
+	# dbug(request.GET)
 	chatrefreshpattern = re.compile(r'^chat(\d+)refresh$')
-	returnObject = { "chatqueues" : {}}
+	playerspattern = re.compile(r'^players(\d)refresh$')
+	returnObject = { "chatqueues" : {}, "playerupdates" : {}}
 	for key in request.GET:
 		m = chatrefreshpattern.search(key)
 		if m:
@@ -35,9 +38,25 @@ def ajax(request):
 					returnObject["chatqueues"][chatid].append(fline)
 			if hadLines: 
 				returnObject["chatqueues"][chatid].append(["newlastid", newlast])
+		else:
+			m = playerspattern.search(key)
+			if m:
+				gameid = m.group(1)
+				mygame = Game.objects.get(pk=gameid)
+				dbug(mygame)
+				tempdic = {}
+				team1 = []
+				team2 = []
+				for player in mygame.team1.players.all():
+					team1.append(player.username)
+				for player in mygame.team2.players.all():
+					team2.append(player.username)
+				tempdic["team1"] = team1
+				tempdic["team2"] = team2
+				returnObject["playerupdates"][gameid] = tempdic
+				dbug(tempdic)
 	chatjson = json.dumps(returnObject)
-	dbug("about to return")
-	dbug(chatjson)
+
 	return HttpResponse(chatjson)
 				
 		

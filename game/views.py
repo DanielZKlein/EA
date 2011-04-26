@@ -7,6 +7,14 @@ from EA.tools import dbug
 def get_standard_dict(request):
 	standard_dict = {'loggedin' : request.user.is_authenticated(), 'username' : request.user.username}
 	return standard_dict
+
+def swapteamongame(request, gameid):
+	if not request.user.is_authenticated():
+		return False
+	mygame = Game.objects.get(pk=gameid)
+	mygame.swapTeams(request.user)
+	return HttpResponse('')
+	
 	
 def game(request, id=-1):
 	mygame = get_object_or_404(Game, pk=id)

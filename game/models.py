@@ -66,6 +66,18 @@ class Game(models.Model):
 		self.team1.leave(user)
 		self.team2.leave(user)
 		return True
+		
+	def swapTeams(self, user):
+		if not user in self.players.all():
+			return False
+			
+		if user in self.team1.players.all():
+			team1.leave(user)
+			team2.join(user)
+		else:
+			team2.leave(user)
+			team1.join(user)
+		return True
 
 class A(models.Model):
 	nameshmame = models.CharField(max_length=100, null=True)

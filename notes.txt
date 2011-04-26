@@ -1,3 +1,16 @@
+AJAX asks: getplayers12
+AJAX says: 
+
+Since you are stupid and forget things faster than a goldfish, blup.
+
+Also: to do the shortcut and have all your models in a shell type:
+shell
+from importme import *
+
+You're welcome.
+
+Login names are currently lowercase. Most (all?) passwords should be gehirn.
+
 >>> from django.contrib.auth.models import User
 >>> from chat.models import Chat
 >>> from game.models import Game, Team

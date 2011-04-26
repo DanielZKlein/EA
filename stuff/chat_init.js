@@ -104,7 +104,6 @@ if (!window.chat_init_loaded) {
 	function chatRefresh() {
 
 		// For now, go through all the chats registered and create and object of "chatXXrefresh" : lastid
-		rv = new Object();
 		chatLastIds = new Object();
 		for (chat in chats) { 
 			chatLastIds["chat" + chat + "refresh"] = chats[chat]['lastid'];

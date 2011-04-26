@@ -21,11 +21,13 @@ urlpatterns = patterns('EA.core',
 
 urlpatterns = urlpatterns + patterns('EA.game',
 	(r'^prelobby/$', 'views.prelobby'),
+	(r'^swapteamongame/(\d+)/$', 'views.swapteam'),
 	url(r'^game/(\d+)/$', 'views.game', name='gameview'),
 )
 
 urlpatterns = urlpatterns + patterns('EA.chat',
 	(r'^chatsay/(\d+)/$', 'views.chatsay'),
+	
 )
 
 urlpatterns = urlpatterns + patterns('',

@@ -1,0 +1,10 @@
+roadmap
+
+Current state: horrible lobby view: two teams (hardcoded, red vs blue), list of players in team, that's it
+
+STEPS:
+
+1) add chat for the whole game
+2) add team chat
+3) indicate presence/absence of players
+4) allow kicking/banning

@@ -4,9 +4,12 @@
 <link rel=stylesheet href="/stuff/game.css">
 <script src="/stuff/ajax_init.js"></script>
 <script src="/stuff/game.js"></script>
+
 <script>
+thisGameId = {{game.id}};
+myName = "{{username}}";
 $(function(){
-	chatInit();
+	//chatInit();
 	heartBeat();
 });
 </script>
@@ -62,5 +65,6 @@ Game {{game.id}}
 		
 		</div>
 	</div>
+<input type=button value="Swap teams" onclick="gameSwapTeams();">
 </div>
 {% endblock %}
